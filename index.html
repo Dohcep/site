@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boutique</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<body>
+
+    <div class="entete">
+        <h1> Boutique </h1>
+    </div>
+    
+<nav>
+  <ul>
+    <li><a href="index.html">Acceuil</a></li>
+    <li><a href="page2.html">Articles</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">A propos</a></li>
+  </ul>
+</nav>
+
+<img id="img-dog" src="https://random.dog/" alt="chien" width="1000" >
+<button id="fetch-dog">
+    woof
+</button>
+
+
+<script>
+    document.querySelector('#fetch-dog').addEventListener('click', async () => {
+        refreshdog()
+    })
+
+
+
+
+    async function refreshdog() {
+        var fetchResult = await fetch('https://random.dog/woof.json')
+        var data = await fetchResult.json()
+
+        if (data.url.includes('.mp4')) {
+            refreshdog()
+            return
+        }
+    document.querySelector('#img-dog').src = data.url
+    }
+    refreshdog()
+</script>
+</body>
+</html>
